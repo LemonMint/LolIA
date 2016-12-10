@@ -27,7 +27,7 @@ public class Conexao {
 
             DefaultHttpClient httpClient = new DefaultHttpClient();
             HttpGet getRequest = new HttpGet(
-                    "https://br.api.pvp.net/api/lol/br/v1.3/game/by-summoner/" +summonerId+"/recent?api_key=RGAPI-6b21c1fe-67a3-4222-b713-918d6609f30c");
+                    "https://br.api.pvp.net/api/lol/br/v1.3/game/by-summoner/" + summonerId + "/recent?api_key=RGAPI-6b21c1fe-67a3-4222-b713-918d6609f30c");
             getRequest.addHeader("accept", "application/json");
 
             HttpResponse response = httpClient.execute(getRequest);
@@ -49,10 +49,10 @@ public class Conexao {
             do {
                 output += br.readLine();
             } while (br.readLine() != null);
-            System.out.println("output: " + output);
+            // System.out.println("output: " + output);
             example = new Gson().fromJson(output, PlayerGames.class);
             httpClient.getConnectionManager().shutdown();
-            System.out.println("id: " + example.getSummonerId());
+            // System.out.println("id: " + example.getSummonerId());
         } catch (ClientProtocolException e) {
 
             e.printStackTrace();

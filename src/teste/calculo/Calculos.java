@@ -22,12 +22,12 @@ public class Calculos {
 
     private double porcentagemVitorias(List<Game> listaGames) {
         double vitorias = 0.;
+        double total = listaGames.size();
         for (Game atual : listaGames) {
             vitorias += atual.getStats().getWin() ? 1 : 0;
         }
-        System.out.println("tamanhdo da lista de game: " + listaGames.size());
-        System.out.println("numero de vitorias : " + vitorias / listaGames.size());
-        return vitorias / listaGames.size();
+        System.out.println("numero de vitorias : " + vitorias / total);
+        return vitorias / total;
     }
 
     public Calculos(PlayerGames games) {
@@ -38,22 +38,27 @@ public class Calculos {
         List<Game> listGames = games.getGames();
         Conexao get2 = new Conexao();
         double porcentagemGames = 0.;
+        double porcentagemTotal = 0.;
+        double totalListGames = listGames.size();
         for (Game gameAtual : listGames) {
             List<FellowPlayer> fellowPlayers = gameAtual.getFellowPlayers();
-            System.out.println("numero de plater na lista:" + fellowPlayers.size());
+            double totalFellowPlayer = fellowPlayers.size();
             double porcentagemMedia = 0.;
+            double contador = 0;
+            System.out.println("-------------------------------------------------------------------------------");
             for (FellowPlayer fellowPlayer : fellowPlayers) {
-                System.out.println("numero do time: " + fellowPlayer.getTeamId());
-                System.out.println("Numero do time atual: " + gameAtual.getTeamId());
                 if (Objects.equals(fellowPlayer.getTeamId(), gameAtual.getTeamId())) {
+                    contador++;
                     PlayerGames playerGames = get2.getPlayerGames(fellowPlayer.getSummonerId());
                     porcentagemMedia += porcentagemVitorias(playerGames.getGames());
                 }
             }
-            porcentagemGames += porcentagemMedia/fellowPlayers.size();
-            System.out.println("porcentagemMedia: " + porcentagemMedia / 4);
+            porcentagemGames += porcentagemMedia / contador;
+            System.out.println("PORCENTAGEM DO JOGO ATUAL : " + porcentagemMedia/contador);
         }
-        porcentagemGames = porcentagemGames/listGames.size();
+        porcentagemTotal = porcentagemGames / totalListGames;
+        System.out.println("PORCENTAGEM TOTAL : " + porcentagemTotal);
+        System.out.println("**********************************************************************************");
         return null;
     }
 }
