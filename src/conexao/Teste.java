@@ -19,11 +19,11 @@ public class Teste {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        Conexao pesquisar = new Conexao();
-        PlayerGames example = pesquisar.getPlayerGames(515534l);
-        Calculos c = new Calculos(example);
-        c.calcularProbabilidade();
-    }
+//    public static void main(String[] args) {
+//        Conexao pesquisar = new Conexao();
+//        PlayerGames example = pesquisar.getPlayerGames(515534l);
+//        Calculos c = new Calculos(example);
+//        c.calcularProbabilidade();
+//    }
     
 }

@@ -5,20 +5,33 @@
  */
 package teste.modelo;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 /**
  *
  * @author Lemon
  */
 public class Summoner {
 
+    @SerializedName("id")
+    @Expose
     private String id;
 
+    @SerializedName("name")
+    @Expose
     private String name;
 
+    @SerializedName("profileIconId")
+    @Expose
     private String profileIconId;
 
+    @SerializedName("revisionDate")
+    @Expose
     private String revisionDate;
 
+    @SerializedName("summonerLevel")
+    @Expose
     private String summonerLevel;
 
     public String getId() {
