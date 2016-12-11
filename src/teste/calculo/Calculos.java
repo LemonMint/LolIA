@@ -19,13 +19,26 @@ import teste.modelo.PlayerGames;
 public class Calculos {
 
     private PlayerGames games;
+    public double wardPlaced;
 
     private double porcentagemVitorias(List<Game> listaGames) {
         double vitorias = 0.;
-        double total = listaGames.size();
+        double totalWards = 0.;
+        double total = 0.;
+        double temp = 0;
         for (Game atual : listaGames) {
-            vitorias += atual.getStats().getWin() ? 1 : 0;
+            if (atual.getSubType().matches("(RANKED_SOLO_5x5)|(NORMAL)|(RANKED_FLEX_SR)")) {
+                if (atual.getStats().getWardPlaced() != null) {
+                    total++;
+                    System.out.println("wardplaced: " + atual.getStats().getWardPlaced());
+                    vitorias += atual.getStats().getWin() ? 1 : 0;
+                    totalWards += atual.getStats().getWardPlaced();
+                }
+            }
         }
+        wardPlaced = wardPlaced + (totalWards / total);
+        System.out.println("TEMP      : " + wardPlaced);
+
         System.out.println("numero de vitorias : " + vitorias / total);
         return vitorias / total;
     }
@@ -39,25 +52,36 @@ public class Calculos {
         Conexao get2 = new Conexao();
         double porcentagemGames = 0.;
         double porcentagemTotal = 0.;
-        double totalListGames = listGames.size();
+        double porcentagemWards = 0;
+        double porcentagemTotalWards = 0;
+        double totalListGames = 0;
         for (Game gameAtual : listGames) {
-            List<FellowPlayer> fellowPlayers = gameAtual.getFellowPlayers();
-            double totalFellowPlayer = fellowPlayers.size();
-            double porcentagemMedia = 0.;
-            double contador = 0;
-            System.out.println("-------------------------------------------------------------------------------");
-            for (FellowPlayer fellowPlayer : fellowPlayers) {
-                if (Objects.equals(fellowPlayer.getTeamId(), gameAtual.getTeamId())) {
-                    contador++;
-                    PlayerGames playerGames = get2.getPlayerGames(fellowPlayer.getSummonerId());
-                    porcentagemMedia += porcentagemVitorias(playerGames.getGames());
+            if (gameAtual.getSubType().matches("(RANKED_SOLO_5x5)|(NORMAL)|(RANKED_FLEX_SR)")) {
+                totalListGames++;
+                System.out.println("Tipo de JOGO: " + gameAtual.getSubType());
+                List<FellowPlayer> fellowPlayers = gameAtual.getFellowPlayers();
+                double totalFellowPlayer = fellowPlayers.size();
+                double porcentagemMedia = 0.;
+                double contador = 0;
+                wardPlaced = 0;
+                System.out.println("-------------------------------------------------------------------------------");
+                for (FellowPlayer fellowPlayer : fellowPlayers) {
+                    if (Objects.equals(fellowPlayer.getTeamId(), gameAtual.getTeamId())) {
+                        contador++;
+                        PlayerGames playerGames = get2.getPlayerGames(fellowPlayer.getSummonerId());
+                        porcentagemMedia += porcentagemVitorias(playerGames.getGames());
+                    }
                 }
+                porcentagemWards += wardPlaced / contador;
+                porcentagemGames += porcentagemMedia / contador;
+                System.out.println("PORCENTAGEM DO JOGO ATUAL : " + porcentagemMedia / contador);
+                System.out.println("PORCENTAGEM DE WARDS DO JOGO ATUAL : " + wardPlaced / contador);
             }
-            porcentagemGames += porcentagemMedia / contador;
-            System.out.println("PORCENTAGEM DO JOGO ATUAL : " + porcentagemMedia/contador);
         }
         porcentagemTotal = porcentagemGames / totalListGames;
+        porcentagemTotalWards = porcentagemWards / totalListGames;
         System.out.println("PORCENTAGEM TOTAL : " + porcentagemTotal);
+        System.out.println("PORCENTAGEM TOTAL WARDS: " + porcentagemTotalWards);
         System.out.println("**********************************************************************************");
         return null;
     }
