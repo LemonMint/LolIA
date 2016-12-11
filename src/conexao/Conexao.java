@@ -6,9 +6,6 @@
 package conexao;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.internal.bind.JsonTreeReader;
-import com.google.gson.stream.JsonReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,8 +16,6 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import teste.modelo.PlayerGames;
 import java.lang.String;
 import org.json.JSONObject;
-import teste.modelo.Summoner;
-import teste.modelo.SummonerDto;
 
 /**
  *
