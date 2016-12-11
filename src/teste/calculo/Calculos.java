@@ -20,6 +20,8 @@ public class Calculos {
 
     private PlayerGames games;
     public double wardPlaced;
+    public double wardLossPlaced;
+    public double wardWinPlaced;
 
     private double porcentagemVitorias(List<Game> listaGames) {
         double vitorias = 0.;
@@ -32,6 +34,11 @@ public class Calculos {
                     total++;
                     System.out.println("wardplaced: " + atual.getStats().getWardPlaced());
                     vitorias += atual.getStats().getWin() ? 1 : 0;
+                    
+                    if(atual.getStats().getWin())
+                        wardWinPlaced++;
+                    else
+                        wardLossPlaced++;
                     totalWards += atual.getStats().getWardPlaced();
                 }
             }
@@ -66,6 +73,7 @@ public class Calculos {
                 wardPlaced = 0;
                 System.out.println("-------------------------------------------------------------------------------");
                 for (FellowPlayer fellowPlayer : fellowPlayers) {
+                    //Aqui, nós buscamos os ids dos summoners do mesmo time do game atual do player analisado.
                     if (Objects.equals(fellowPlayer.getTeamId(), gameAtual.getTeamId())) {
                         contador++;
                         PlayerGames playerGames = get2.getPlayerGames(fellowPlayer.getSummonerId());
