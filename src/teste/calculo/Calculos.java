@@ -82,16 +82,16 @@ public class Calculos {
         wardPlaced += (totalWards / total);
         wardWinPlaced += (wardVitoriaPlaced / contadorVitoriaWard);
         wardLossPlaced += (wardDerrotaPlaced / contadorDerrotaWard);
-        System.out.println("----------------------Media de JOGOS------------------------");
-        System.out.println("VITORIA 10 : " + contadorVitoria10);
-        System.out.println("VITORIA 9 : " + contadorVitoria9);
-        System.out.println("DERROTA 10 : " + contadorDerrota10);
-        System.out.println("DERROTA 9 : " + contadorDerrota9);
-        System.out.println("WARD WIN           : " + wardVitoriaPlaced / contadorVitoriaWard);
-        System.out.println("WARD LOSS          : " + wardDerrotaPlaced / contadorDerrotaWard);
-        System.out.println("WARDS TOTAL        : " + totalWards / total);
-        System.out.println("CONTROL            : " + totalCrowdControl / total);
-        System.out.println("numero de vitorias : " + vitorias / total);
+//        System.out.println("----------------------Media de JOGOS------------------------");
+//        System.out.println("VITORIA 10 : " + contadorVitoria10);
+//        System.out.println("VITORIA 9 : " + contadorVitoria9);
+//        System.out.println("DERROTA 10 : " + contadorDerrota10);
+//        System.out.println("DERROTA 9 : " + contadorDerrota9);
+//        System.out.println("WARD WIN           : " + wardVitoriaPlaced / contadorVitoriaWard);
+//        System.out.println("WARD LOSS          : " + wardDerrotaPlaced / contadorDerrotaWard);
+//        System.out.println("WARDS TOTAL        : " + totalWards / total);
+//        System.out.println("CONTROL            : " + totalCrowdControl / total);
+//        System.out.println("numero de vitorias : " + vitorias / total);
         return vitorias / total;
     }
 
@@ -138,11 +138,11 @@ public class Calculos {
                 porcentagemWardVitoria += wardWinPlaced / contador;
                 porcentagemWardDerrota += wardLossPlaced / contador;
 
-                System.out.println("SOMATORIO DOS JOGADORES              : " + porcentagemMedia / contador);
-                System.out.println("SOMATORIO DE WARDS DOS JOGADORES     : " + wardPlaced / contador);
-                System.out.println("SOMATORIO DE WARDS VITORIA           : " + wardWinPlaced / contador);
-                System.out.println("SOMATORIO DE WARDS DERROTA           : " + wardLossPlaced / contador);
-                System.out.println("SOMATORIO DE CROWDCRONTROL JOGODORES : " + crowdControlDealt / contador);
+//                System.out.println("SOMATORIO DOS JOGADORES              : " + porcentagemMedia / contador);
+//                System.out.println("SOMATORIO DE WARDS DOS JOGADORES     : " + wardPlaced / contador);
+//                System.out.println("SOMATORIO DE WARDS VITORIA           : " + wardWinPlaced / contador);
+//                System.out.println("SOMATORIO DE WARDS DERROTA           : " + wardLossPlaced / contador);
+//                System.out.println("SOMATORIO DE CROWDCRONTROL JOGODORES : " + crowdControlDealt / contador);
             }
         }
         porcentagemWardVitoriaTotal = porcentagemWardVitoria / totalListGames;
@@ -151,17 +151,17 @@ public class Calculos {
         porcentagemTotal = porcentagemGames / totalListGames;
         porcentagemTotalWards = porcentagemWards / totalListGames;
         totalPartidas = contadorDerrotas10 + contadorDerrotas9 + contadorVitorias10 + contadorVitorias9;
-        System.out.println("TOTAL DE PARTIDAS ANALISADAS : " + totalPartidas);
-        System.out.println("CONTADOR VITORIA >10 : " + contadorVitorias10);
-        System.out.println("CONTADOR DERROTAS >10: " + contadorDerrotas10);
-        System.out.println("CONTADOR VITORIAS <9 : " + contadorVitorias9);
-        System.out.println("CONTADOR DERROTAS <9 : " + contadorDerrotas9);
-        System.out.println("PORCENTAGEM TOTAL            : " + porcentagemTotal);
-        System.out.println("PORCENTAGEM TOTAL WARDS      : " + porcentagemTotalWards);
-        System.out.println("PORCENTAGEM WARDS VITORIA    : " + porcentagemWardVitoriaTotal);
-        System.out.println("PORCENTAGEM WARDS DERROTA    : " + porcentagemWardDerrotaTotal);
-        System.out.println("PORCENTAGEM CROWDCONTROLDEALT: " + porcentagemTotalCrowdControl);
-        System.out.println("**********************************************************************************");
+//        System.out.println("TOTAL DE PARTIDAS ANALISADAS : " + totalPartidas);
+//        System.out.println("CONTADOR VITORIA >10 : " + contadorVitorias10);
+//        System.out.println("CONTADOR DERROTAS >10: " + contadorDerrotas10);
+//        System.out.println("CONTADOR VITORIAS <9 : " + contadorVitorias9);
+//        System.out.println("CONTADOR DERROTAS <9 : " + contadorDerrotas9);
+//        System.out.println("PORCENTAGEM TOTAL            : " + porcentagemTotal);
+//        System.out.println("PORCENTAGEM TOTAL WARDS      : " + porcentagemTotalWards);
+//        System.out.println("PORCENTAGEM WARDS VITORIA    : " + porcentagemWardVitoriaTotal);
+//        System.out.println("PORCENTAGEM WARDS DERROTA    : " + porcentagemWardDerrotaTotal);
+//        System.out.println("PORCENTAGEM CROWDCONTROLDEALT: " + porcentagemTotalCrowdControl);
+//        System.out.println("**********************************************************************************");
         CalculoEstatistico();
         CalcularProbabilidadeMaior();
         CalcularProbabilidadeMenor();
@@ -176,32 +176,33 @@ public class Calculos {
         vitoria9 = contadorVitorias9 / (contadorVitorias10 + contadorVitorias9);
         derrota10 = contadorDerrotas10 / (contadorDerrotas10 + contadorDerrotas9);
         derrota9 = contadorDerrotas9 / (contadorDerrotas10 + contadorDerrotas9);
-        System.out.println("Porcentagem Vitoria: " + porcentagemVitoria);
-        System.out.println("Porcentagem Derrota: " + porcentagemDerrota);
-        System.out.println("Porcentagem Vitoria ward 10: " + vitoria10);
-        System.out.println("Porcentagem Vitoria ward 9: " + vitoria9);
-        System.out.println("Porcentagem Derrota ward 10: " + derrota10);
-        System.out.println("Porcentagem Derrota ward 9: " + derrota9);
-        System.out.println("------------------------------------------------------------------");
+//        System.out.println("Porcentagem Vitoria: " + porcentagemVitoria);
+//        System.out.println("Porcentagem Derrota: " + porcentagemDerrota);
+//        System.out.println("Porcentagem Vitoria ward 10: " + vitoria10);
+//        System.out.println("Porcentagem Vitoria ward 9: " + vitoria9);
+//        System.out.println("Porcentagem Derrota ward 10: " + derrota10);
+//        System.out.println("Porcentagem Derrota ward 9: " + derrota9);
+//        System.out.println("------------------------------------------------------------------");
     }
 
     public void CalcularProbabilidadeMaior() {
-
+        //considerando que a quantidade de ward é de 10 ou mais, qual a probabilidade de vitória
         wardMaior = (porcentagemVitoria * vitoria10) + (porcentagemDerrota * derrota10);
         //wardMenor = (porcentagemVitoria*vitoria9) + (porcentagemDerrota*derrota9);
+        //Probabilidade a posterioria de vencer sendo que foi colocado mais de 10 wards
         posterioreMaiorVitoria = (porcentagemVitoria * vitoria10) / wardMaior;
         posterioreMaiorDerrota = (porcentagemDerrota * derrota10) / wardMaior;
-        System.out.println("wardMaior: " + wardMaior);
-        System.out.println("posterioreMaiorVitoria: " + posterioreMaiorVitoria);
-        System.out.println("posterioreMaiorDerrota: " + posterioreMaiorDerrota);
+//        System.out.println("wardMaior: " + wardMaior);
+//        System.out.println("posterioreMaiorVitoria: " + posterioreMaiorVitoria);
+//        System.out.println("posterioreMaiorDerrota: " + posterioreMaiorDerrota);
     }
 
     public void CalcularProbabilidadeMenor() {
         wardMenor = (porcentagemVitoria * vitoria9) + (porcentagemDerrota * derrota9);
         posterioreMenorVitoria = (porcentagemVitoria * vitoria9) / wardMenor;
         posterioreMenorDerrota = (porcentagemDerrota * derrota9) / wardMaior;
-        System.out.println("wardMenor: " + wardMenor);
-        System.out.println("posterioreMenorVitoria: " + posterioreMenorVitoria);
-        System.out.println("posterioreMenorDerrota: " + posterioreMenorDerrota);
+//        System.out.println("wardMenor: " + wardMenor);
+//        System.out.println("posterioreMenorVitoria: " + posterioreMenorVitoria);
+//        System.out.println("posterioreMenorDerrota: " + posterioreMenorDerrota);
     }
 }

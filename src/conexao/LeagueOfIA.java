@@ -5,6 +5,8 @@
  */
 package conexao;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import teste.calculo.Calculos;
 import teste.modelo.PlayerGames;
@@ -35,53 +37,103 @@ public class LeagueOfIA extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtSummonerName = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAreaResult = new javax.swing.JTextArea();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("League of IA");
+        setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("League of IA");
 
         jLabel2.setText("Nome de Invocador:");
 
-        jButton1.setText("Iniciar");
+        jButton1.setText("Iniciar cálculos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jLabel3.setText("Dados da pesquisa:");
+
+        jLabel4.setText("Resultados: ");
+
+        txtAreaResult.setColumns(20);
+        txtAreaResult.setRows(5);
+        txtAreaResult.setEnabled(false);
+        jScrollPane2.setViewportView(txtAreaResult);
+
+        jMenu1.setText("Menu");
+
+        jMenuItem1.setText("Ajuda");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Sobre");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtSummonerName))
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(152, 152, 152)
-                                .addComponent(jButton1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(123, 123, 123)
-                                .addComponent(jLabel1)))
-                        .addGap(0, 123, Short.MAX_VALUE)))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtSummonerName)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(286, 286, 286)
+                .addComponent(jLabel1)
+                .addContainerGap(304, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(14, 14, 14)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtSummonerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -89,16 +141,47 @@ public class LeagueOfIA extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+               
         Conexao pesquisar = new Conexao();
-        long idSummoner = pesquisar.getSummonerId(txtSummonerName.getText());
+        String nomeInvocador = txtSummonerName.getText().replaceAll("\\s+", "");
+        System.out.println("INVOCADOR: " + nomeInvocador);
+        long idSummoner = pesquisar.getSummonerId(nomeInvocador);
         if (idSummoner > 0) {
+
+            String resultado = "";
             PlayerGames example = pesquisar.getPlayerGames(idSummoner);
             Calculos c = new Calculos(example);
             c.calcularProbabilidade();
+            resultado += "Quantidade de jogos analisados: " + c.totalPartidas + "\n";
+
+            resultado += "Probabilidade de vitória ≅ " + (c.porcentagemVitoria * 100) + "%\n";
+            resultado += "Probabilidade de derrota ≅ " + (c.porcentagemDerrota * 100) + "%\n";
+            resultado += "Probabilidade de vitoria com 10 ou mais sentinelas ≅ " + (c.vitoria10 * 100) + "%\n";
+            resultado += "Probabilidade vitória com 9 ou menos sentinelas ≅ " + (c.vitoria9 * 100) + "%\n";
+
+            resultado += "Probabilidade derrota com 10 ou mais sentinelas ≅ " + (c.derrota10 * 100) + "%\n";
+            resultado += "Probabilidade derrota com 9 ou menos sentinelas ≅ " + (c.derrota9 * 100) + "%\n";
+
+            resultado += "Probabilidade à Posteriori de vitória adotando-se que foram colocadas \n10 ou mais sentinelas ≅ " + (c.posterioreMaiorVitoria * 100) + "%\n";
+            resultado += "Probabilidade à Posteriori de vitória adotando-se que foram colocadas \nmenos de 10 sentinelas ≅ " + (c.posterioreMenorVitoria * 100) + "%\n";
+            resultado += "Probabilidade à Posteriori de derrota adotando-se que foram colocadas \n10 ou mais sentinelas ≅ " + (c.posterioreMaiorDerrota * 100) + "%\n";
+            resultado += "Probabilidade à Posteriori de derrota adotando-se que foram colocadas \nmenos de 10 sentinelas ≅ " + (c.posterioreMenorDerrota * 100) + "%\n";
+
+            txtAreaResult.setText(resultado);
+
         } else {
             JOptionPane.showMessageDialog(this, "Não foi possível identificar o invocador.", "Erro", 0);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        JOptionPane.showMessageDialog(this, "• O campo nome de invocador, é onde deve ser digitado o apelido do jogador em League of Legends.\n"
+                + "• Ao clicar em Iniciar cálculos, o sistema fará algumas consultas ao servidor de League of Legends, Em busca das inforamções referentes ao invocador\n• Por fim, fará os cálculos necessários para as probabilidades (Isso pode levar alguns segundos, dependendo da sua conexão).", "Ajuda", 1);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+         JOptionPane.showMessageDialog(this, "Trabalho de Inteligência Artificial sobre Redes Bayesianas, desenvolvido por:\n• Marcos Paulo Zanelatto\n• Raul Porto de Souza\n ", "Ajuda", 1);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,6 +222,14 @@ public class LeagueOfIA extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea txtAreaResult;
     private javax.swing.JTextField txtSummonerName;
     // End of variables declaration//GEN-END:variables
 }
